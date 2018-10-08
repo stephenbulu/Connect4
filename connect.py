@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import time
+import sys
 WIDTH = 7
 HEIGHT = 6
 
@@ -31,7 +32,10 @@ class Game():
         for i in range(HEIGHT):
             row = self.board[i]
             print("  | "+' | '.join([int_to_symbol(x) for x in row])+' |')
-        print('  '+'█'*29+'\n')
+        try:
+            print('  '+'█'*29+'\n')
+        except UnicodeEncodeError:
+            print('  '+'H'*29+'\n')
     def is_column_full(self, column):
         '''Takes an int up to 6 and returns a boolean for if that column is full'''
         if self.board[0][column] == 0:
